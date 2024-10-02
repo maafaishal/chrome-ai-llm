@@ -95,3 +95,27 @@ a {
     @apply bg-background text-foreground;
   }
 }
+
+.ai-content p,
+.ai-content ul,
+.ai-content ol {
+  margin-bottom: 1rem;
+  line-height: 26px;
+}
+
+.ai-content li {
+  margin-bottom: 0.75rem;
+}
+
+.ai-content ul,
+.ai-content ol {
+  padding-inline-start: 1.625em;
+}
+
+.ai-content ul {
+  list-style-type: disc;
+}
+
+.ai-content ol {
+  list-style-type: decimal;
+}

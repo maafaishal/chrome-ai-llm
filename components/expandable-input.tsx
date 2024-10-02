@@ -4,10 +4,13 @@ import { useState, useRef, useEffect } from "react";
 import { ArrowUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+import { Loading } from "./ui/loading";
+
 const initialHeight = 24; // Initial height in pixels
 const maxHeight = initialHeight * 4; // Maximum height (4 times the initial height)
 
 type Props = {
+  isLoading: boolean;
   onClick: (text: string) => void;
 };
 
@@ -58,18 +61,28 @@ export function ExpandableInput(props: Props) {
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           placeholder="Message Chrome AI"
-          className="resize-none bg-inherit focus:outline-none flex-grow"
+          className={`resize-none bg-inherit focus:outline-none flex-grow ${
+            props.isLoading && "cursor-not-allowed"
+          }`}
           style={{
             minHeight: `${initialHeight}px`,
             maxHeight: `${maxHeight}px`,
           }}
+          disabled={props.isLoading}
         />
         <Button
           variant="ghost"
-          className="h-8 w-8 px-0 rounded-full flex-shrink-0 self-end bg-gray-400 dark:bg-gray-600"
+          className={`h-8 w-8 px-0 rounded-full flex-shrink-0 self-end bg-gray-400 dark:bg-gray-600 ${
+            props.isLoading && "cursor-not-allowed"
+          }`}
           onClick={handleClick}
+          disabled={props.isLoading}
         >
-          <ArrowUp className="text-gray-100" size={20} />
+          {props.isLoading ? (
+            <Loading size={20} />
+          ) : (
+            <ArrowUp className="text-gray-100" size={20} />
+          )}
         </Button>
       </div>
     </div>

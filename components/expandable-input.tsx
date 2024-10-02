@@ -10,6 +10,7 @@ const initialHeight = 24; // Initial height in pixels
 const maxHeight = initialHeight * 4; // Maximum height (4 times the initial height)
 
 type Props = {
+  isDisabled: boolean;
   isLoading: boolean;
   onClick: (text: string) => void;
 };
@@ -49,6 +50,8 @@ export function ExpandableInput(props: Props) {
     }
   };
 
+  const isDisabled = props.isLoading || props.isDisabled;
+
   return (
     <div className="w-full">
       <div
@@ -62,21 +65,21 @@ export function ExpandableInput(props: Props) {
           onKeyDown={handleKeyDown}
           placeholder="Message Chrome AI"
           className={`resize-none bg-inherit focus:outline-none flex-grow ${
-            props.isLoading && "cursor-not-allowed"
+            isDisabled && "cursor-not-allowed"
           }`}
           style={{
             minHeight: `${initialHeight}px`,
             maxHeight: `${maxHeight}px`,
           }}
-          disabled={props.isLoading}
+          disabled={isDisabled}
         />
         <Button
           variant="ghost"
           className={`h-8 w-8 px-0 rounded-full flex-shrink-0 self-end bg-gray-400 dark:bg-gray-600 ${
-            props.isLoading && "cursor-not-allowed"
+            isDisabled && "cursor-not-allowed"
           }`}
           onClick={handleClick}
-          disabled={props.isLoading}
+          disabled={isDisabled}
         >
           {props.isLoading ? (
             <Loading size={20} />

@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 export function WelcomeBanner() {
   return (
     <div className="flex flex-col h-full justify-center text-center">

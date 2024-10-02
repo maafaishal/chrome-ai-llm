@@ -84,7 +84,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden">
+    <div className="flex-1 flex flex-col overflow-hidden px-4">
       <div className="md:max-w-3xl mx-auto w-full flex-1 my-4 overflow-y-auto overflow-x-hidden">
         {supportStatus === "not-supported" && <NotSupportBanner />}
         {supportStatus === "supported" && messages.length === 0 && (

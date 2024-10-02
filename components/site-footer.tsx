@@ -1,7 +1,7 @@
 export function SiteFooter() {
   return (
     <footer className="w-full text-center py-2">
-      <p className="text-muted-foreground px-2 text-center text-xs leading-normal hidden sm:block">
+      <p className="text-muted-foreground px-2 text-center text-xs leading-normal">
         Built with{" "}
         <a
           href="https://github.com/jeasonstudio/chrome-ai"

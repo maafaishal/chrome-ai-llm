@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="overflow-hidden">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ThemeProvider
           attribute="class"
@@ -38,7 +38,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <SiteHeader />
-          <div className="min-h-[calc(100vh-98px)]">{children}</div>
+          <div className="h-[calc(100vh-98px)] flex flex-col">{children}</div>
           <SiteFooter />
         </ThemeProvider>
       </body>

@@ -1,19 +1,26 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { ChevronUpIcon } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export function ExpandableInput() {
+const initialHeight = 24; // Initial height in pixels
+const maxHeight = initialHeight * 4; // Maximum height (4 times the initial height)
+
+type Props = {
+  onClick: (text: string) => void;
+};
+
+export function ExpandableInput(props: Props) {
   const [value, setValue] = useState("");
+
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const initialHeight = 40; // Initial height in pixels
-  const maxHeight = initialHeight * 4; // Maximum height (4 times the initial height)
 
   useEffect(() => {
     if (textareaRef.current) {
       textareaRef.current.style.height = `${initialHeight}px`;
       const scrollHeight = textareaRef.current.scrollHeight;
+
       textareaRef.current.style.height = `${Math.min(
         scrollHeight,
         maxHeight
@@ -26,19 +33,45 @@ export function ExpandableInput() {
     setValue(event.target.value);
   };
 
+  const handleClick = () => {
+    props.onClick(value);
+    setValue("");
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      props.onClick(value);
+      setValue("");
+    }
+  };
+
   return (
-    <div className="relative w-full">
-      <textarea
-        ref={textareaRef}
-        value={value}
-        onChange={handleChange}
-        placeholder="Message Chrome AI"
-        className="w-full px-6 py-3.5 text-white bg-gray-800 rounded-[26px] resize-none overflow-hidden focus:outline-none focus:ring-2 focus:ring-blue-500"
-        style={{ minHeight: `${initialHeight}px`, maxHeight: `${maxHeight}px` }}
-      />
-      <Button className="h-8 w-8 px-0 absolute right-3 bottom-[18px] rounded-full">
-        <ChevronUpIcon className="  text-gray-400" size={20} />
-      </Button>
+    <div className="w-full">
+      <div
+        id="this-id"
+        className="w-full rounded-[26px] bg-gray-200 dark:bg-gray-800 overflow-hidden py-3 pl-6 pr-3 gap-3 flex justify-between items-center"
+      >
+        <textarea
+          ref={textareaRef}
+          value={value}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          placeholder="Message Chrome AI"
+          className="resize-none bg-inherit focus:outline-none flex-grow"
+          style={{
+            minHeight: `${initialHeight}px`,
+            maxHeight: `${maxHeight}px`,
+          }}
+        />
+        <Button
+          variant="ghost"
+          className="h-8 w-8 px-0 rounded-full flex-shrink-0 self-end bg-gray-400 dark:bg-gray-600"
+          onClick={handleClick}
+        >
+          <ArrowUp className="text-gray-100" size={20} />
+        </Button>
+      </div>
     </div>
   );
 }

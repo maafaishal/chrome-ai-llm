@@ -1,6 +1,12 @@
+"use client";
+
 import { ExpandableInput } from "@/components/expandable-input";
 
 export default function Home() {
+  const handleClickInput = (text: string) => {
+    console.log("🚀 ~ handleClickInput ~ text:", text);
+  };
+
   return (
     <div className="flex-1 flex flex-col overflow-hidden">
       <div className="md:max-w-3xl mx-auto w-full flex-1 my-4 overflow-y-auto overflow-x-hidden">
@@ -11,7 +17,7 @@ export default function Home() {
           ))}
       </div>
       <div className="md:max-w-3xl mx-auto w-full flex-shrink-0">
-        <ExpandableInput />
+        <ExpandableInput onClick={handleClickInput} />
       </div>
     </div>
   );

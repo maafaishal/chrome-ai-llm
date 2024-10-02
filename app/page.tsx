@@ -8,7 +8,8 @@ import htmr from "htmr";
 import { ChromeIcon } from "lucide-react";
 
 import { ExpandableInput } from "@/components/expandable-input";
-import { NotSupportInfo } from "@/components/not-support-info";
+import { NotSupportBanner } from "@/components/not-support-banner";
+import { WelcomeBanner } from "@/components/welcome-banner";
 
 import { useChromeAi } from "@/hooks/use-chrome-ai";
 
@@ -85,7 +86,10 @@ export default function Home() {
   return (
     <div className="flex-1 flex flex-col overflow-hidden">
       <div className="md:max-w-3xl mx-auto w-full flex-1 my-4 overflow-y-auto overflow-x-hidden">
-        {supportStatus === "not-supported" && <NotSupportInfo />}
+        {supportStatus === "not-supported" && <NotSupportBanner />}
+        {supportStatus === "supported" && messages.length === 0 && (
+          <WelcomeBanner />
+        )}
         {supportStatus === "supported" &&
           messages.map((msg, idx) => {
             const isUser = msg.role === "user";

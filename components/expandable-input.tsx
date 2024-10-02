@@ -59,6 +59,7 @@ export function ExpandableInput(props: Props) {
         className="w-full rounded-[26px] bg-gray-200 dark:bg-gray-800 overflow-hidden py-3 pl-6 pr-3 gap-3 flex justify-between items-center"
       >
         <textarea
+          autoFocus
           ref={textareaRef}
           value={value}
           onChange={handleChange}

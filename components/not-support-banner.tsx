@@ -4,7 +4,7 @@ import { AlertCircle } from "lucide-react";
 
 import { Alert, AlertTitle, AlertDescription } from "./ui/alert";
 
-export function NotSupportInfo() {
+export function NotSupportBanner() {
   const [chromeVersion, setChromeVersion] = useState(0);
 
   useEffect(() => {

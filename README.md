@@ -1,3 +1,5 @@
+<img width="1512" alt="image" src="https://github.com/user-attachments/assets/4924a7ed-1229-4bc2-8584-9a944fd647f9">
+
 # Chrome AI LLM in Next JS
 
 This is a Chrome AI LLM project. The tech stack:
